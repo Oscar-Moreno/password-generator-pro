@@ -1,52 +1,76 @@
 // El styles lo importamos aquí, ya se carga después al compilar todo
 import '../scss/styles.scss';
 
-const passWordElement = document.getElementById('password')
-const lengthTextElement = document.getElementById('length-text')
-const  rangeElement =document.getElementById('range')
-const buttonGenerator = document.getElementById('generate-password')
+const passwordElement = document.getElementById('password');
+const lengthTextElement = document.getElementById('length-text');
+const rangeElement = document.getElementById('range');
+const buttonGenerateElement = document.getElementById('generate-password');
 
-const upperCaseInputElement= document.getElementById('uppercase')
-const lowerInputElement= document.getElementById('lowercase')
-const numberInputElement= document.getElementById('numbers')
-const symbolsInputElement= document.getElementById('symbols')
+const uppercaseInputElement = document.getElementById('uppercase');
+const lowercaseInputElement = document.getElementById('lowercase');
+const numbersInputElement = document.getElementById('numbers');
+const symbolsInputElement = document.getElementById('symbols');
 
-
-const passwordOptions= {
-    uppercase: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ',
-    lowercase: 'abcdefghijklmnñopqrstuvwxyz',
-    numbers: '1234567890',
-    symbols: '+-.,!"·$%&/()=?{}'
-}
+const passwordOptions = {
+  uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  lowercase: 'abcdefghijklmnopqrstuvwxyz',
+  numbers: '0123456789',
+  symbols: '!@#$%^&*()_+-={}[]:;<>,.?/'
+};
 
 let passwordLength = rangeElement.value;
-let allowedCharacters ='';
+let allowedCharacters = '';
 let finalPassword = '';
 
-const fillAllowedCharacters = (event)=>{
-    allowedCharacters = '';
-    const checkboxes = document.querySelectorAll ('input:checked')
+const setDisabledButton = () => {
+  buttonGenerateElement.disabled = !allowedCharacters.length;
+};
 
-    checkboxes.forEach(input=>(allowedCharacters+= passwordOptions(input.id)))
+const fillAllowedCharacters = () => {
+  allowedCharacters = '';
+  const checkboxes = document.querySelectorAll('input:checked');
 
-    console.log(allowedCharacters)
-}
+  if (checkboxes.length === 0) {
+    return;
+  }
 
+  checkboxes.forEach(input => (allowedCharacters += passwordOptions[input.id]));
 
-const changeLengthText = event =>{
-    passwordLength = event.target.value;
-    lengthTextElement.textContent=passwordLength
-}
+  console.log(allowedCharacters);
 
-const generateRandomPosition = () =>{
-    const randomPosition = Math.floor(Math.random()=allowedCharacters.length)
-    return randomPosition
-}
-const randomCharacter = ()=>{
-    const randomPosition = generateRandomPosition()
-    const randomCharacter =allowedCharacters.charAt(randomPosition)
-     passWordElement.textContent = randomCharacter
-}
+  setDisabledButton();
+};
 
- rangeElement.addEventListener('range', changeLengthText)
- buttonGenerator.addEventListener('click',randomCharacter)
+const changeLengthText = event => {
+  passwordLength = event.target.value;
+  lengthTextElement.textContent = passwordLength;
+};
+
+const generateRandomPosition = () => {
+  const randomPosition = Math.floor(Math.random() * allowedCharacters.length);
+  return randomPosition;
+};
+
+const getRandomCharacter = () => {
+  const randomPosition = generateRandomPosition();
+  const randomCharacter = allowedCharacters.charAt(randomPosition);
+  return randomCharacter;
+};
+
+const generatePassword = () => {
+  finalPassword = '';
+  for (let i = 0; i < passwordLength; i++) {
+    const randomCharacter = getRandomCharacter();
+    finalPassword += randomCharacter;
+  }
+
+  passwordElement.value = finalPassword;
+};
+
+rangeElement.addEventListener('input', changeLengthText);
+buttonGenerateElement.addEventListener('click', generatePassword);
+
+uppercaseInputElement.addEventListener('change', fillAllowedCharacters);
+lowercaseInputElement.addEventListener('change', fillAllowedCharacters);
+numbersInputElement.addEventListener('change', fillAllowedCharacters);
+symbolsInputElement.addEventListener('change', fillAllowedCharacters);

@@ -9,42 +9,40 @@
     <title>Vite Template</title>
   </head>
   <body>
-    <main class="main">
-      <div class="password">
-        <input type="text" name="" id="password" placeholder="P4$5WORD!">
+    <div class="password-generator">
+      <input type="text" class="password" id="password" placeholder="P4$5W0RD!" readonly />
+      <div>
+        <label for="range" class="range-label">LENGTH: <span id="length-text">16</span></label>
       </div>
-      <p class="legth">
-        LENGTH: <span class="count"></span>
-      </p>
-      <div class="range">
+      <div class="range-container">
         <span>4</span>
-        <input type="range" name="range" id="range" min="4" max="32">
+        <input id="range" type="range" class="range-input" min="4" max="32" step="1" value="16" />
         <span>32</span>
       </div>
       <div id="options" class="options-container">
         <div class="input-field">
-          <span class="option-text">Include Upercase</span>
-          <input type="checkbox" id="toggle-1" class="option-input">
-          <label for="toggle-1" class="toggle-label"></label>
+          <span class="option-text">Include Uppercase</span>
+          <input type="checkbox" id="uppercase" class="option-input" />
+          <label for="uppercase" class="option-label"></label>
         </div>
         <div class="input-field">
           <span class="option-text">Include Lowercase</span>
-          <input type="checkbox" id="toggle-2" class="option-input">
-          <label for="toggle-2" class="toggle-label"></label>
+          <input type="checkbox" id="lowercase" class="option-input" />
+          <label for="lowercase" class="option-label"></label>
         </div>
         <div class="input-field">
-          <span class="option-text">Include Numbers</span>
-          <input type="checkbox" id="toggle-3" class="option-input">
-          <label for="toggle-3" class="toggle-label"></label>
+          <span class="toogle">Include Numbers</span>
+          <input type="checkbox" id="numbers" class="option-input" />
+          <label for="numbers" class="option-label"></label>
         </div>
         <div class="input-field">
-          <span class="option-text">Include Symbols</span>
-          <input type="checkbox" id="toggle-4" class="option-input">
-          <label for="toggle-4" class="toggle-label"></label>
+          <span class="toogle">Include Symbols</span>
+          <input type="checkbox" id="symbols" class="option-input" />
+          <label for="symbols" class="option-label"></label>
         </div>
+      </div>
+      <button disabled id="generate-password" class="button">Generate Password</button>
     </div>
-      <button class="btn" id="generate-password"> GENERATE PASSWORD</button>
-  </main>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>
