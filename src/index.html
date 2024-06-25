@@ -9,7 +9,42 @@
     <title>Vite Template</title>
   </head>
   <body>
-    <h1>HOLA</h1>
+    <main class="main">
+      <div class="password">
+        <input type="text" name="" id="password" placeholder="P4$5WORD!">
+      </div>
+      <p class="legth">
+        LENGTH: <span class="count"></span>
+      </p>
+      <div class="range">
+        <span>4</span>
+        <input type="range" name="range" id="range" min="4" max="32">
+        <span>32</span>
+      </div>
+      <div id="options" class="options-container">
+        <div class="input-field">
+          <span class="option-text">Include Upercase</span>
+          <input type="checkbox" id="toggle-1" class="option-input">
+          <label for="toggle-1" class="toggle-label"></label>
+        </div>
+        <div class="input-field">
+          <span class="option-text">Include Lowercase</span>
+          <input type="checkbox" id="toggle-2" class="option-input">
+          <label for="toggle-2" class="toggle-label"></label>
+        </div>
+        <div class="input-field">
+          <span class="option-text">Include Numbers</span>
+          <input type="checkbox" id="toggle-3" class="option-input">
+          <label for="toggle-3" class="toggle-label"></label>
+        </div>
+        <div class="input-field">
+          <span class="option-text">Include Symbols</span>
+          <input type="checkbox" id="toggle-4" class="option-input">
+          <label for="toggle-4" class="toggle-label"></label>
+        </div>
+    </div>
+      <button class="btn" id="generate-password"> GENERATE PASSWORD</button>
+  </main>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>
